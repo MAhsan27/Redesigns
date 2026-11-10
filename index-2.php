@@ -2672,11 +2672,35 @@ background: linear-gradient(to bottom, rgba(1, 11, 51, 0) 90%, #010b33 100%), va
 </script> -->
 
 <style>
-    /* Sirf info-sec ki background image change karne ke liye */
+    /* --- INFO SEC BACKGROUND & PERFECT BLEND --- */
     .info-sec {
+        /* Original Background Image */
         background: url('img/government-certified.webp') center center / cover no-repeat !important;
-        /* Note: Agar text parhne mein masla ho toh neeche wali line uncomment kar dein */
-        /* background: linear-gradient(rgba(247, 249, 252, 0.8), rgba(247, 249, 252, 0.8)), url('img/info-bg.webp') center center / cover no-repeat !important; */
+        
+        /* Blending ke liye position relative zaroori hai */
+        position: relative;
+    }
+
+    /* 1. Yeh gradient shadow upar wale dark blue section se match karegi */
+    .info-sec::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px; /* Fade ki height (ishko kam ya zyada kar sakte hain) */
+        
+        /* #05447D wohi dark blue hai jo upar wale section (.ss) ka base color hai */
+        background: linear-gradient(to bottom, #05447D 0%, rgba(5, 68, 125, 0) 100%);
+        
+        pointer-events: none; /* Taake text select karne mein masla na ho */
+        z-index: 1;
+    }
+
+    /* 2. Yeh text ko shadow ke upar (crisp) rakhega */
+    .info-sec .info-wrap {
+        position: relative;
+        z-index: 2;
     }
 </style>
 
@@ -2864,27 +2888,53 @@ background: linear-gradient(to bottom, rgba(1, 11, 51, 0) 90%, #010b33 100%), va
      =================================================== -->
 <style>
 /* ===== SHELL (Prominent Brand Theme) ===== */
+/* ===== SHELL (Prominent Brand Theme with BG Image) ===== */
 .countries-partners{
   position: relative;
   overflow: hidden;
   padding: 70px 24px 90px;
   text-align: center;
-  /* Rich Brand Navy Background with Red/Blue ambient glows */
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(250, 219, 141, 0.45), transparent 50%), /* #FADB8D Glow */
-    radial-gradient(ellipse 60% 60% at 0% 100%, rgba(0,58,102,.6), transparent 70%),
-    radial-gradient(ellipse 60% 60% at 100% 100%, rgba(11,99,206,.25), transparent 70%),
-    linear-gradient(180deg, #010b33 0%, #001f3f 100%);
-  border-top: 1px solid rgba(11, 99, 206, 0.2);
-  border-bottom: 1px solid rgba(224, 36, 84, 0.2);
+  background: #061636; /* Fallback color */
+  border-top: 5px solid rgba(250, 219, 141, 0.8);
+  border-bottom: 5px solid rgba(224, 36, 84, 0.4);
+  border-radius: 4px;
 }
+
+/* 1. Background Image Layer (Zyada roshan aur clear) */
+.countries-partners::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('img/Global Recruitment Connections.png') center center / cover no-repeat;
+  opacity: 1; /* 0.7 se barha kar 0.85 kiya taake image aur clear ho */
+  filter: blur(1px); /* Blur aur kam kar diya */
+  z-index: 0;
+}
+
+/* 2. Overlay Layer (Bilkul halka tint) */
+.countries-partners::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    /* Dark tint ko aur kam kar diya (0.4/0.5 se 0.2/0.3) */
+    linear-gradient(180deg, rgba(6, 22, 54, 0.6) 0%, rgba(11, 46, 89, 0.3) 100%),
+    
+    /* Aapke purane ambient glows (Yeh waise hi rahenge) */
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(250, 219, 141, 0.45), transparent 50%),
+    radial-gradient(ellipse 60% 60% at 0% 100%, rgba(16, 85, 150, 0.6), transparent 70%),
+    radial-gradient(ellipse 60% 60% at 100% 100%, rgba(11, 99, 206, 0.4), transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .countries-partners .glow{
   --d: clamp(500px, 55vw, 1100px);
   position: absolute;
   width: var(--d); height: var(--d);
   bottom: calc(var(--d) * -.86);
   border-radius: 50%;
-  pointer-events: none; z-index: 0;
+  pointer-events: none; z-index: 2;
 }
 /* Left Curve - Gold / Yellow with Increased Glow */
 .countries-partners .glow.b{
@@ -2905,7 +2955,7 @@ background: linear-gradient(to bottom, rgba(1, 11, 51, 0) 90%, #010b33 100%), va
     0 0 40px 4px rgba(224,36,84,.28);
 }
 .countries-partners .inner{
-  position: relative; z-index: 1;
+  position: relative; z-index: 3;
   max-width: 1400px; margin: 0 auto;
 }
 
@@ -2961,7 +3011,7 @@ background: linear-gradient(to bottom, rgba(1, 11, 51, 0) 90%, #010b33 100%), va
   max-width: 580px;
   margin: 16px auto 30px;
   font-size: 15px; line-height: 1.65;
-  color: #9aa1c4;
+  color: #fff;
 }
 
 /* ===== CAPSULE MARQUEE ===== */
