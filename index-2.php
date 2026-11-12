@@ -1163,71 +1163,174 @@ document.addEventListener("submit", function (event) {
 
 
 /* =========================================================
-   RESPONSIVE FIXES (Sirf Mobile/Tablet ke liye)
+   RESPONSIVE (Tablet + Mobile) - Premium App-Style
    ========================================================= */
 
-/* Tablet */
-@media(max-width: 1000px) {
+/* ---------- Tablet ---------- */
+@media (max-width: 1000px) {
     .mpx .mpx-wrap {
-        max-width: 95%; /* 80% se barha kar 95% kiya taake squeeze na ho */
-        grid-template-columns: 1fr; /* Left aur Right ko stack kiya */
+        max-width: 95%;
+        grid-template-columns: 1fr;
     }
-    .mpx .mpx-why {
-        margin-top: 30px;
-    }
+    .mpx .mpx-why { margin-top: 30px; }
 }
 
-/* Mobile */
-@media(max-width: 620px) {
-    .mpx {
-        padding: 32px 18px; 
+/* ---------- Mobile ---------- */
+@media (max-width: 620px) {
+
+    .mpx { padding: 28px 14px 32px; }
+    .mpx .mpx-wrap { max-width: 100%; gap: 0; }
+
+    /* Heading + intro */
+    .mpx .mpx-bar { width: 56px; height: 4px; margin-bottom: 12px; }
+    .mpx .mpx-title {
+        font-size: 25px;
+        line-height: 1.15;
+        letter-spacing: -.3px;
     }
-    .mpx .mpx-wrap {
-        max-width: 100%; /* Mobile par full width */
+    .mpx .mpx-intro {
+        font-size: 13.5px;
+        line-height: 1.55;
+        margin: 12px 0 18px;
     }
+
+    /* ===== CARDS: 2 columns, image overlay tiles ===== */
     .mpx .mpx-cards {
-        grid-template-columns: 1fr; /* 1 column kiya taake images stretch na hon */
-        gap: 16px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .mpx .mpx-card {
+        position: relative;
+        height: 138px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 18px rgba(10, 35, 80, .22);
+        transition: transform .25s ease;
+    }
+    .mpx .mpx-card:active { transform: scale(.97); }
+
+    .mpx .mpx-card picture {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
     }
     .mpx .mpx-card img {
-        height: auto; /* Fixed height hatadi */
-        aspect-ratio: 16 / 9; /* Natural ratio lagaya taake kharab na ho */
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+        object-fit: cover;
     }
+
+    /* Dark gradient + white text on image */
     .mpx .mpx-card .mpx-lbl {
-        font-size: 14px;
-        padding: 14px 16px;
-        min-height: auto;
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        z-index: 2;
+        display: block;
+        min-height: 0;
+        padding: 34px 11px 10px 14px;
+        font-size: 12px;
+        line-height: 1.25;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(to top,
+            rgba(6, 22, 54, .95) 0%,
+            rgba(6, 22, 54, .70) 55%,
+            rgba(6, 22, 54, 0) 100%);
     }
-    
-    /* Right Card Fixes */
-    .mpx .mpx-why-head {
-        gap: 12px;
-        padding: 12px 15px;
+    /* Red accent line */
+    .mpx .mpx-card .mpx-lbl::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 11px;
+        width: 3px;
+        height: 28px;
+        background: var(--mpx-red);
+        border-radius: 0 3px 3px 0;
     }
-    .mpx .mpx-why-head svg {
-        width: 55px; /* Icon thora chota kiya */
-        height: 55px;
-    }
-    .mpx .mpx-why-title {
-        font-size: 18px;
-        padding-left: 12px;
-    }
-    .mpx .mpx-list span.mpx-tx {
-        font-size: 14px;
-    }
-    .mpx .mpx-list li {
-        padding: 10px 0;
-    }
-    .mpx .mpx-ic {
-        width: 45px;
-        height: 45px;
-    }
+
+    /* ===== BUTTON ===== */
     .mpx a.mpx-btn {
         width: 100%;
         justify-content: center;
+        margin-top: 18px;
+        padding: 14px 20px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 14px;
+        color: #fff;
+        background: linear-gradient(135deg, #f0213a, #c80c26);
+        box-shadow: 0 10px 22px rgba(228, 32, 46, .35);
+    }
+    .mpx a.mpx-btn:hover { background: linear-gradient(135deg, #ff3352, #a80a1f); }
+
+    /* ===== WHY CHOOSE BOX ===== */
+    .mpx .mpx-why {
+        margin-top: 24px;
+        padding: 8px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, .9);
+    }
+    .mpx .mpx-why-head {
+        gap: 10px;
+        padding: 14px;
+        border-radius: 18px;
+    }
+    .mpx .mpx-why-head svg { width: 46px; height: 46px; }
+    .mpx .mpx-why-title {
+        font-size: 15px;
+        line-height: 1.3;
+        padding-left: 12px;
+    }
+    .mpx .mpx-why-title::before { width: 3px; }
+
+    /* 8 points -> 2 x 4 icon tiles */
+    .mpx .mpx-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 10px 2px 2px;
+    }
+    .mpx .mpx-list li {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        padding: 12px 8px;
+        border: 0;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(30, 70, 130, .10);
+    }
+    .mpx .mpx-list li:last-child { border-bottom: 0; }
+
+    .mpx .mpx-ic {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+    }
+    .mpx .mpx-ic svg { width: 21px; height: 21px; }
+
+    .mpx .mpx-list span.mpx-tx {
+        font-size: 11.5px;
+        line-height: 1.3;
+        font-weight: 600;
+        color: var(--mpx-navy);
     }
 }
 
+/* ---------- Very small phones ---------- */
+@media (max-width: 360px) {
+    .mpx .mpx-title { font-size: 22px; }
+    .mpx .mpx-card { height: 120px; }
+    .mpx .mpx-card .mpx-lbl { font-size: 11px; padding-left: 12px; }
+    .mpx .mpx-list span.mpx-tx { font-size: 10.5px; }
+}
 
 
 
@@ -1689,7 +1792,310 @@ Kindly share your vendor registration process or requirements.
 
 </section>
 
- <section class="clients-sec">
+
+
+
+<?php
+/* =====================================================================
+   AYK  |  CLIENTS TRUST WALL  (dual-row marquee)   prefix: ctw-
+   ---------------------------------------------------------------------
+   HOW TO USE
+   1. In index.php delete the WHOLE old block:
+        <section class="clients-sec"> ... </section>
+   2. Paste everything from this file (from the <?php above to the last
+      </script>) in the same place.
+   3. Nothing else needs to change. The old JS at the bottom of index.php
+      (activateWhenNearViewport('.clients-track'...)) will simply find
+      nothing and do nothing, so there is no conflict.
+
+   Every class starts with "ctw-" and every CSS rule starts with ".ctw",
+   so it cannot clash with style.css / bootstrap / other sections.
+   The loop is duplicated in PHP (not JS), so it works even if JS fails.
+   ===================================================================== */
+
+$ctw_dir = 'img/our clients/';
+
+/* [file, alt]  — same logos & alt texts as before */
+$ctw_logos = [
+  ['new_logos_2.webp',  'Stano print International'],
+  ['client46.webp',     'Hala'],
+  ['client47.webp',     'Lafemme'],
+  ['sj.webp',           'SABK Aljusore commercial company'],
+  ['logo_new_12.webp',  'Adnan Radi General contracting Company'],
+  ['logo_new_13.webp',  'Pepsi Al jomaih bottling plant'],
+  ['logo_new_14.webp',  'Apollo'],
+  ['new_logos_1.webp',  'SABK Aljusore commercial company'],
+  ['new_logos_3.webp',  'Adnan Radi General contracting Company'],
+  ['new_logos_5.webp',  'Powrbot'],
+  ['new_logos_6.webp',  'Inseryal'],
+  ['new_logo_16.webp',  'Qimmah Recruitment Establishment'],
+  ['new_logo_17.webp',  'Rawafed Najd Recruitment Company'],
+  ['new_logo_18.webp',  'Bader Al-Monjaz for Recruitment Office'],
+  ['new_logo_19.webp',  'Musaned Domestic Labor Program'],
+  ['logo_new_15.webp',  'Salah Al Hamad Trad. Company'],
+  ['1.webp',  'ASNAD AL SAWID Logistics Services logo'],
+  ['2.webp',  'Wasi Steel Industries logo'],
+  ['3.webp',  'MARPCO logo'],
+  ['4.webp',  'Barns logo'],
+  ['5.webp',  'Nelofar Al-Shirq logo'],
+  ['6.webp',  'ATLASBAY logo'],
+  ['7.webp',  'Anmar Al-Riyada for Trading and General Contracting logo'],
+  ['8.webp',  'ONMR logo'],
+  ['9.webp',  'Royal Intl. Construction Company logo'],
+  ['10.webp', 'Bisan Group logo'],
+  ['11.webp', 'Mohammed Aqeel Foundation for Commerce, Trading, and Import logo'],
+  ['12.webp', 'MANBA BEIURUT for Trading and Contracting logo'],
+  ['13.webp', 'SEPCO logo'],
+  ['14.webp', 'RYADAT Al Muwada for General Contracting logo'],
+  ['15.webp', 'AGATE logo'],
+  ['16.webp', 'DALLOW WATER logo'],
+  ['17.webp', 'SAUDI EMAR for Real Estate Development logo'],
+  ['18.webp', 'Tub National Contracting Company logo'],
+  ['19.webp', 'Afaq Al-Madina Technical Services LLC logo'],
+  ['20.webp', 'International Recruitment Company logo'],
+  ['21.webp', 'Maharah Human Resources Company logo'],
+  ['22.webp', 'Afras Avira for Teeth logo'],
+  ['23.webp', 'Jabir M.Al-Jerais for Transportation Est.'],
+  ['24.webp', 'MAKHAVI Machinery & Equipment Rental logo'],
+  ['25.webp', 'Majeed Al-Harbi Ltd Co. logo'],
+  ['26.webp', 'Saleh Abdullah Al Hamad Co. logo'],
+  ['27.webp', 'Marasy Al-Shamal General Contrating EST logo'],
+  ['28.webp', 'Blackstone Energy logo'],
+  ['29.webp', 'Industrial Support Services Company logo'],
+  ['30.webp', 'Al-Manaratain Company and Ali Al-Shaab Group W.L.L logo'],
+  ['31.webp', 'ESNAD Transport & Services W.L.L logo'],
+  ['32.webp', 'Abo Al-Abd Chicken logo'],
+  ['33.webp', 'SIGNATURE logo'],
+  ['34.webp', 'EAMAR Al-Musanid logo'],
+  ['35.webp', 'KAABI logo'],
+  ['36.webp', 'Perfect Class Trading Company logo'],
+  ['37.webp', 'The Deck Patong Holiday Rental logo'],
+  ['38.webp', 'SANABIL Al-Jauf logo'],
+  ['39.webp', 'NURSING PLACEMENT AGENCY logo'],
+  ['40.webp', 'Sanabil Al-Jauf logo'],
+  ['41.webp', 'IUC logo'],
+  ['42.webp', 'Professional Mountains Co ltd logo'],
+  ['43.webp', 'StanoPrint International LLC logo'],
+  ['44.webp', 'IPS Group India logo'],
+  ['client45.webp', 'Sharp Corporation'],
+];
+
+/* Alternate logos between the two rows so both rows look balanced */
+$ctw_row1 = [];
+$ctw_row2 = [];
+foreach ($ctw_logos as $i => $l) {
+    if ($i % 2 === 0) { $ctw_row1[] = $l; } else { $ctw_row2[] = $l; }
+}
+
+/* Renders one full loop = two identical sets (second set hidden from screen readers) */
+if (!function_exists('ctw_render_row')) {
+    function ctw_render_row(array $logos, $dir)
+    {
+        for ($set = 0; $set < 2; $set++) {
+            foreach ($logos as $l) {
+                $src = $dir . str_replace(' ', '%20', $l[0]);
+                $alt = $set === 0 ? htmlspecialchars($l[1], ENT_QUOTES, 'UTF-8') : '';
+                echo '<div class="ctw-card"' . ($set ? ' aria-hidden="true"' : '') . '>'
+                   . '<img src="' . $src . '" alt="' . $alt . '" loading="lazy" decoding="async">'
+                   . '</div>' . "\n";
+            }
+        }
+    }
+}
+?>
+<style>
+/* =========================================================
+   CTW  — Clients Trust Wall (fully scoped)
+   ========================================================= */
+.ctw{
+  --ctw-navy:#0a2350;
+  --ctw-blue:#0b63ce;
+  --ctw-red:#e4202e;
+  --ctw-gold:#FDBB30;
+  --ctw-ink:#1b2433;
+  --ctw-card-w:250px;
+  --ctw-card-h:130px;
+  --ctw-zoom:1.15;
+  --ctw-gap:18px;
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:40px 0 70px;
+  font-family:'Poppins',Arial,sans-serif;color:var(--ctw-ink);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(11,99,206,.10) 1px, transparent 1.4px) 0 0/22px 22px,
+    linear-gradient(180deg,#ffffff 0%,#f1f6fd 55%,#ffffff 100%);
+  box-sizing:border-box;
+}
+.ctw *,.ctw *::before,.ctw *::after{box-sizing:border-box}
+
+/* soft color glows behind the wall */
+.ctw::before,.ctw::after{content:"";position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(70px)}
+.ctw::before{width:420px;height:420px;left:-140px;top:30%;background:rgba(11,99,206,.14)}
+.ctw::after{width:380px;height:380px;right:-120px;top:10%;background:rgba(253,187,48,.18)}
+
+.ctw .ctw-head{max-width:860px;margin:0 auto;padding:0 20px;text-align:center}
+.ctw .ctw-badge{
+  display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;padding:7px 16px;border-radius:999px;
+  font-size:13px;font-weight:600;color:var(--ctw-navy);
+  background:#fff;border:1px solid rgba(11,99,206,.18);box-shadow:0 6px 18px rgba(10,35,80,.07);
+}
+.ctw .ctw-badge i{width:8px;height:8px;border-radius:50%;background:var(--ctw-red);display:block;box-shadow:0 0 0 0 rgba(228,32,46,.5);animation:ctw-pulse 2s infinite}
+.ctw h3.ctw-title{
+  margin:0 0 14px;padding:0;font-family:inherit;
+  font-size:clamp(25px,3.3vw,36px);line-height:1.2;font-weight:700;letter-spacing:-.01em;color:var(--ctw-navy);
+}
+.ctw p.ctw-sub{margin:0 auto;max-width:800px;font-size:16px;line-height:1.7;color:#334155}
+
+/* ---------- marquee wall ---------- */
+.ctw .ctw-wall{position:relative;display:flex;flex-direction:column;gap:var(--ctw-gap); margin-top:30px}
+.ctw .ctw-row{
+  overflow:hidden;padding:10px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);
+}
+.ctw .ctw-track{
+  display:flex;align-items:center;width:max-content;
+  animation:ctw-left var(--ctw-dur,80s) linear infinite;
+  will-change:transform;transform:translate3d(0,0,0);
+}
+.ctw .ctw-row-2 .ctw-track{animation-name:ctw-right;--ctw-dur:95s}
+.ctw .ctw-row-1 .ctw-track{--ctw-dur:80s}
+.ctw .ctw-row:hover .ctw-track,
+.ctw .ctw-row:focus-within .ctw-track,
+.ctw.ctw-paused .ctw-track{animation-play-state:paused}
+
+/* logo card — one uniform shape for every logo */
+.ctw .ctw-card{
+  flex:none;width:var(--ctw-card-w);height:var(--ctw-card-h);margin-right:var(--ctw-gap);
+  display:flex;align-items:center;justify-content:center;padding:6px;
+  background:#fff;border-radius:18px;border:1px solid rgba(10,35,80,.08);
+  box-shadow:0 8px 22px rgba(10,35,80,.07);
+  position:relative;overflow:hidden;
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+/* gold underline that grows on hover */
+.ctw .ctw-card::after{
+  content:"";position:absolute;left:18%;right:18%;bottom:0;height:3px;border-radius:3px 3px 0 0;
+  background:linear-gradient(90deg,var(--ctw-gold),var(--ctw-red));
+  transform:scaleX(0);transition:transform .35s ease;
+}
+  .ctw .ctw-card img{
+  display:block;width:100%;height:100%;max-width:none;object-fit:contain;
+  mix-blend-mode:multiply;transform:scale(var(--ctw-zoom,1.15));
+  transition:transform .3s ease;
+}
+.ctw .ctw-card:hover{
+  transform:translateY(-6px);border-color:rgba(253,187,48,.7);
+  box-shadow:0 18px 34px rgba(10,35,80,.16),0 0 0 3px rgba(253,187,48,.18);
+}
+.ctw .ctw-card:hover::after{transform:scaleX(1)}
+.ctw .ctw-card:hover img{transform:scale(calc(var(--ctw-zoom,1.15) + .08))}
+
+/* animations */
+@keyframes ctw-left {from{transform:translate3d(0,0,0)}   to{transform:translate3d(-50%,0,0)}}
+@keyframes ctw-right{from{transform:translate3d(-50%,0,0)} to{transform:translate3d(0,0,0)}}
+@keyframes ctw-pulse{0%{box-shadow:0 0 0 0 rgba(228,32,46,.5)}70%{box-shadow:0 0 0 7px rgba(228,32,46,0)}100%{box-shadow:0 0 0 0 rgba(228,32,46,0)}}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .ctw{padding:56px 0 62px;--ctw-card-w:210px;--ctw-card-h:110px;--ctw-gap:14px}
+  .ctw .ctw-row-1 .ctw-track{--ctw-dur:65s}
+  .ctw .ctw-row-2 .ctw-track{--ctw-dur:75s}
+}
+@media (max-width:520px){
+  .ctw{padding: 0 0 44px;--ctw-card-w:170px;--ctw-card-h:90px;--ctw-gap:12px}
+  .ctw p.ctw-sub{font-size:14px;line-height:1.65}
+  .ctw .ctw-card{padding:5px;border-radius:14px}
+  .ctw .ctw-row{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+}
+@media (prefers-reduced-motion:reduce){
+  .ctw .ctw-track{animation:none;transform:none}
+  .ctw .ctw-row{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .ctw .ctw-badge i{animation:none}
+}
+
+
+/* logos jin ki images ka apna background hai */
+.ctw .ctw-card.ctw-tint img{mix-blend-mode:normal;transform:none}
+.ctw .ctw-card.ctw-tint:hover img{transform:scale(1.05)}
+</style>
+
+<section class="ctw" aria-labelledby="ctw-heading">
+
+  <div class="ctw-head">
+    <span class="ctw-badge"><i></i>Trusted by employers in the GCC &amp; beyond</span>
+    <h3 class="ctw-title" id="ctw-heading">Trusted Manpower Recruitment Services for International Employers</h3>
+    <p class="ctw-sub">
+      We support international employers with reliable manpower recruitment and staffing
+      solutions for their workforce needs. Whether you require skilled, semi-skilled or
+      unskilled manpower for construction, manufacturing, logistics, facility management
+      or other industries, we provide suitable Pakistani workers tailored to your
+      requirements. Our focus on quality, reliable recruitment and timely workforce deployment makes us a trusted manpower agency for global employers.
+    </p>
+  </div>
+
+  <!-- DUAL ROW WALL -->
+  <div class="ctw-wall" role="group" aria-label="Our international employer clients">
+    <div class="ctw-row ctw-row-1">
+      <div class="ctw-track"><?php ctw_render_row($ctw_row1, $ctw_dir); ?></div>
+    </div>
+    <div class="ctw-row ctw-row-2">
+      <div class="ctw-track"><?php ctw_render_row($ctw_row2, $ctw_dir); ?></div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function () {
+  var root = document.querySelector('.ctw');
+  if (!root) return;
+
+  /* 1) Pause the marquee when the section is off-screen (saves CPU/battery) */
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { root.classList.toggle('ctw-paused', !e.isIntersecting); });
+    }, { rootMargin: '100px 0px' }).observe(root);
+  }
+
+
+
+    /* 2) Card bg auto-match: jin logos ka apna solid background hai */
+  function tint(img) {
+    try {
+      if (!img.naturalWidth) return;
+      var S = 40, c = document.createElement('canvas');
+      c.width = S; c.height = S;
+      var x = c.getContext('2d', { willReadFrequently: true });
+      x.drawImage(img, 0, 0, S, S);
+
+      var pts = [[0,0],[S-1,0],[0,S-1],[S-1,S-1],[S>>1,0],[S>>1,S-1],[0,S>>1],[S-1,S>>1]];
+      var px = [], r = 0, g = 0, b = 0;
+      pts.forEach(function (p) {
+        var d = x.getImageData(p[0], p[1], 1, 1).data;
+        px.push(d); r += d[0]; g += d[1]; b += d[2];
+      });
+      r /= 8; g /= 8; b /= 8;
+
+      /* kinare opaque aur ek jaise rang ke hon, tabhi bg maana jaye */
+      var solid = px.every(function (d) {
+        return d[3] > 200 && Math.abs(d[0]-r) + Math.abs(d[1]-g) + Math.abs(d[2]-b) < 45;
+      });
+      if (!solid) return;
+      if (r > 251 && g > 251 && b > 251) return;   /* pehle se pure white */
+
+      var card = img.closest('.ctw-card');
+      card.style.background = 'rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
+      card.classList.add('ctw-tint');
+    } catch (e) { /* canvas blocked: card white hi rahega */ }
+  }
+
+  [].forEach.call(root.querySelectorAll('.ctw-card img'), function (img) {
+    if (img.complete) tint(img);
+    else img.addEventListener('load', function () { tint(img); });
+  });
+})();
+</script>
+ <!-- <section class="clients-sec">
 
     <div class="clients-container">
 
@@ -1779,7 +2185,7 @@ Kindly share your vendor registration process or requirements.
 
     </div>
 
-</section>
+</section> -->
 
 
 
@@ -2785,7 +3191,199 @@ background: linear-gradient(to bottom, rgba(1, 11, 51, 0) 90%, #010b33 100%), va
 
 
 
-<section class="industries">
+
+<?php
+/* =====================================================================
+   AYK | INDUSTRIES BENTO GRID      prefix: ixw-
+   ---------------------------------------------------------------------
+   HOW TO USE
+   In index.php delete the whole old block:
+        <section class="industries"> ... </section>
+   and paste this entire file in the same place.
+   All classes start with "ixw-" and every CSS rule starts with ".ixw",
+   so nothing else on the site is affected.
+   ===================================================================== */
+
+$ixw_dir = 'img/recuritment-sectros-by-industry/';
+
+/* [image, alt, url, label, wide?]  — same images / links / alt texts as before */
+$ixw_items = [
+  ['Industrial-Labour-2.webp', 'Skilled Construction Workers and Engineers for Overseas Projects', 'https://ayk.global/industry/construction-manpower-services', 'Construction & Infrastructure Manpower Recruitment', true],
+  ['Oil-Gas-Staffing-Agency-in-Pakistan-For-Overseas-Employers.webp', 'Hire Oil & Gas Manpower from AYK Overseas', 'https://ayk.global/industry/oil-gas-manpower-recruitment', 'Oil & Gas & Energy Manpower Recruitment', false],
+  ['helathcare-doctors.webp', 'Healthcare recruitment for doctors and nurses', 'https://ayk.global/industry/healthcare-medical-recruitment', 'Healthcare & Medical Staff Recruitment', false],
+  ['it-digital.webp', 'IT recruitment and staffing services', 'https://ayk.global/industry/it-staffing-services', 'IT, Digital & Technology Recruitment', false],
+  ['office-staff-corpaorate-sector.webp', 'Office staffing and recruitment services', 'https://ayk.global/industry/office-staff-manpower-services', 'Administration, Office & Corporate Staffing', false],
+  ['manufacturing-industrial-workforce.webp', 'ayk overseas provides industrial workers for Saudi Arabia, Qatar, Kuwait, UAE, Europe', 'https://ayk.global/industry/manufacturing-manpower-services', 'Manufacturing & Industrial Manpower Recruitment', true],
+  ['aviation-airport-staff.webp', 'Best HR Manpower Agency for Airport Sector Recruitment', 'https://ayk.global/industry/aviation-manpower-services', 'Aviation & Airport Staff Recruitment', false],
+  ['marine-shiipping-sector.webp', 'Hire Now manpower for Your Marine Projects', 'https://ayk.global/industry/marine-manpower-services', 'Marine, Shipping & Port Operations Recruitment', false],
+  ['telecomunication-sector.webp', 'Best Telecom industry workers providers in Pakistan', 'https://ayk.global/industry/telecom-manpower-services', 'Telecommunications & Customer Support Recruitment', false],
+  ['education-tranning-staff.webp', 'Top HR Manpower Agency in pakistan provides staffing solutions in education sector', 'https://ayk.global/industry/education-manpower-services', 'Education, Training & Academic Recruitment', false],
+];
+?>
+<style>
+/* =========================================================
+   IXW — Industries bento grid (fully scoped)
+   ========================================================= */
+.ixw{
+  --ixw-navy:#0a2350;
+  --ixw-red:#e4202e;
+  --ixw-gold:#FDBB30;
+  --ixw-row:172px;
+  --ixw-gap:16px;
+  position:relative;isolation:isolate;overflow:hidden;padding:44px 20px 52px;
+  font-family:'Poppins',Arial,sans-serif;color:#1b2433;
+  background:
+    radial-gradient(circle at 1px 1px,rgba(11,99,206,.11) 1px,transparent 1.4px) 0 0/22px 22px,
+    linear-gradient(135deg,#ffffff 0%,#eef4fd 45%,#fff8e8 100%);
+  box-sizing:border-box;
+}
+/* premium glows + gold hairline on top */
+.ixw::before,.ixw::after{content:"";position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(80px)}
+.ixw::before{width:460px;height:460px;left:-160px;top:18%;background:rgba(11,99,206,.20)}
+.ixw::after{width:420px;height:420px;right:-140px;bottom:-60px;background:rgba(253,187,48,.26)}
+.ixw .ixw-top{position:absolute;left:0;right:0;top:0;height:3px;z-index:0;background:linear-gradient(90deg,transparent,var(--ixw-gold),var(--ixw-red),var(--ixw-gold),transparent);opacity:.85}
+.ixw *,.ixw *::before,.ixw *::after{box-sizing:border-box}
+
+.ixw .ixw-head{max-width:980px;margin:0 auto 26px;text-align:center}
+.ixw .ixw-bar{width:64px;height:5px;margin:0 auto 12px;border-radius:3px;background:var(--ixw-red)}
+.ixw h3.ixw-title{
+  margin:0 0 10px;padding:0;font-family:inherit;
+  font-size:clamp(25px,3.2vw,36px);line-height:1.2;font-weight:700;letter-spacing:-.01em;color:var(--ixw-navy);
+}
+.ixw p.ixw-sub{margin:0 auto;max-width:960px;font-size:15px;line-height:1.6;color:#334155}
+.ixw p.ixw-sub a{color:var(--ixw-navy);font-weight:700;text-decoration:underline;text-decoration-color:var(--ixw-gold);text-underline-offset:3px}
+.ixw p.ixw-sub a:hover{color:var(--ixw-red)}
+
+/* ---------- bento grid ---------- */
+.ixw .ixw-grid{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-auto-rows:var(--ixw-row);gap:var(--ixw-gap);
+}
+.ixw a.ixw-card{
+  position:relative;display:block;overflow:hidden;border-radius:20px;
+  background:#0a2350;text-decoration:none;color:#fff;
+  box-shadow:0 10px 26px rgba(10,35,80,.16);
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.ixw a.ixw-card.ixw-wide{grid-column:span 2}
+.ixw a.ixw-card img{
+  position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;
+  transition:transform .7s cubic-bezier(.2,.7,.2,1);
+}
+/* dark gradient so the label is always readable */
+.ixw a.ixw-card::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(6,22,54,.94) 0%,rgba(6,22,54,.62) 38%,rgba(6,22,54,0) 72%);
+  transition:opacity .35s ease;
+}
+/* gold-to-red line grows on hover */
+.ixw a.ixw-card::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:4px;z-index:3;
+  background:linear-gradient(90deg,var(--ixw-gold),var(--ixw-red));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s ease;
+}
+.ixw .ixw-lbl{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:0 54px 14px 20px;
+  font-size:15px;line-height:1.3;font-weight:700;color:#fff;
+}
+.ixw .ixw-lbl::before{      /* red accent bar */
+  content:"";position:absolute;left:0;bottom:15px;width:4px;height:calc(100% - 0px);max-height:38px;
+  background:var(--ixw-red);border-radius:0 4px 4px 0;
+}
+.ixw .ixw-wide .ixw-lbl{font-size:17px}
+.ixw .ixw-go{               /* arrow chip */
+  position:absolute;right:14px;bottom:12px;z-index:3;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;color:var(--ixw-navy);background:#fff;
+  box-shadow:0 6px 16px rgba(0,0,0,.28);
+  transition:background .3s ease,transform .3s ease;
+}
+.ixw .ixw-go svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+
+.ixw a.ixw-card:hover,.ixw a.ixw-card:focus-visible{transform:translateY(-6px);box-shadow:0 22px 40px rgba(10,35,80,.28)}
+.ixw a.ixw-card:hover img,.ixw a.ixw-card:focus-visible img{transform:scale(1.08)}
+.ixw a.ixw-card:hover::after,.ixw a.ixw-card:focus-visible::after{transform:scaleX(1)}
+.ixw a.ixw-card:hover .ixw-go,.ixw a.ixw-card:focus-visible .ixw-go{background:var(--ixw-gold);transform:rotate(-45deg)}
+.ixw a.ixw-card:focus-visible{outline:3px solid rgba(11,99,206,.55);outline-offset:3px}
+
+/* button */
+.ixw .ixw-more{text-align:center;margin-top:28px}
+.ixw a.ixw-btn{
+  display:inline-flex;align-items:center;gap:10px;padding:12px 30px;border-radius:999px;
+  font-family:inherit;font-size:15.5px;font-weight:700;line-height:1.2;color:#fff;text-decoration:none;
+  background:linear-gradient(135deg,#f0213a,#c80c26);box-shadow:0 12px 26px rgba(228,32,46,.32);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.ixw a.ixw-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s ease}
+.ixw a.ixw-btn:hover{transform:translateY(-3px);box-shadow:0 18px 32px rgba(228,32,46,.45);color:#fff}
+.ixw a.ixw-btn:hover svg{transform:translateX(4px)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .ixw{--ixw-row:150px}
+  .ixw .ixw-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ixw a.ixw-card.ixw-wide{grid-column:span 2}
+}
+@media (max-width:768px){
+  .ixw{padding:34px 14px 44px;--ixw-row:150px;--ixw-gap:10px}
+  .ixw .ixw-head{margin-bottom:24px}
+  .ixw p.ixw-sub{font-size:13.5px;line-height:1.6}
+  .ixw .ixw-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ixw a.ixw-card{border-radius:16px}
+  .ixw a.ixw-card.ixw-wide{grid-column:span 2;grid-row:span 1}
+  .ixw .ixw-lbl{padding:0 44px 12px 14px;font-size:12.5px}
+  .ixw .ixw-wide .ixw-lbl{font-size:14px}
+  .ixw .ixw-lbl::before{left:0;bottom:13px;max-height:30px;width:3px}
+  .ixw .ixw-go{width:28px;height:28px;right:10px;bottom:10px}
+  .ixw .ixw-go svg{width:14px;height:14px}
+  .ixw .ixw-more{margin-top:26px}
+  .ixw a.ixw-btn{width:100%;justify-content:center;font-size:14.5px}
+}
+@media (hover:none){
+  .ixw a.ixw-card:hover{transform:none}
+  .ixw a.ixw-card:hover img{transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ixw a.ixw-card,.ixw a.ixw-card img,.ixw .ixw-go,.ixw a.ixw-btn{transition:none}
+}
+</style>
+
+<section class="ixw" aria-labelledby="ixw-heading">
+  <span class="ixw-top" aria-hidden="true"></span>
+
+  <div class="ixw-head">
+    <div class="ixw-bar"></div>
+    <h3 class="ixw-title" id="ixw-heading">Global Recruitment &amp; Manpower Services by Industry</h3>
+    <p class="ixw-sub">
+      AYK provides skilled, semi-skilled and unskilled
+      <a href="https://ayk.global/request-manpower-for-your-project.php">manpower recruitment services from Pakistan</a>
+      for employers across major industries. Our global recruitment and staffing solutions cover construction, oil &amp; gas, healthcare, medical staff, manufacturing, facility management, IT, engineering, logistics, aviation, marine, telecommunications, administration, education and other workforce sectors across the GCC, Europe and international markets. We support permanent, temporary and contract staffing, bulk manpower recruitment and project-based workforce requirements with reliable candidate sourcing and deployment.
+    </p>
+  </div>
+
+  <div class="ixw-grid">
+    <?php foreach ($ixw_items as $it):
+        $src   = $ixw_dir . str_replace(' ', '%20', $it[0]);
+        $alt   = htmlspecialchars($it[1], ENT_QUOTES, 'UTF-8');
+        $href  = htmlspecialchars($it[2], ENT_QUOTES, 'UTF-8');
+        $label = htmlspecialchars($it[3], ENT_QUOTES, 'UTF-8');
+    ?>
+    <a class="ixw-card<?= $it[4] ? ' ixw-wide' : '' ?>" href="<?= $href ?>">
+      <img src="<?= $src ?>" alt="<?= $alt ?>" loading="lazy" decoding="async">
+      <span class="ixw-lbl"><?= $label ?></span>
+      <span class="ixw-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <?php endforeach; ?>
+  </div>
+
+  <div class="ixw-more">
+    <a class="ixw-btn" href="https://ayk.global/recruitment-by-industry.php">View More Industries
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+  </div>
+
+</section>
+<!-- <section class="industries">
 
     <div class="container">
 
@@ -2824,7 +3422,67 @@ background: linear-gradient(to bottom, rgba(1, 11, 51, 0) 90%, #010b33 100%), va
 
     </div>
 
-</section>
+</section> -->
+
+
+<style>
+    /* ===== PROCESS SECTION: tablet + mobile ===== */
+
+    .process {
+        padding: 10px !important;
+    }
+
+/* Tablet: 4 x 2 grid */
+@media (min-width:769px) and (max-width:1100px){
+  .process .process-steps{grid-template-columns:repeat(4,minmax(0,1fr)) !important;row-gap:26px !important}
+  .process .process-steps::before{display:none !important}
+  .process .step p{width:100% !important;font-size:12.5px !important;min-height:0 !important}
+}
+
+/* Mobile: vertical timeline */
+@media (max-width:768px){
+  .process{padding:12px 16px 32px !important}
+  .process .process-title{font-size:22px;line-height:1.3;margin-bottom:26px}
+
+  .process .process-steps{
+    display:flex !important;flex-direction:column;gap:0 !important;
+    max-width:420px;margin:0 auto;position:relative;counter-reset:ps;
+  }
+  /* vertical line */
+  .process .process-steps::before{
+    display:block !important;content:"";position:absolute;
+    left:22px;right:auto;top:24px;bottom:24px;width:2px;height:auto;
+    background:linear-gradient(180deg,#e63946,#d1d5db);z-index:1;
+  }
+
+  .process .step{
+    flex:none !important;width:100% !important;min-width:0 !important;
+    flex-direction:row !important;align-items:center !important;
+    text-align:left !important;margin:0 !important;padding:0 0 14px !important;
+  }
+  .process .step:last-child{padding-bottom:0 !important}
+
+  .process .circle{margin:0 14px 0 0 !important;flex:0 0 45px;position:relative;z-index:2}
+
+  /* label card */
+  .process .step p{
+    flex:1;width:auto !important;min-height:0 !important;
+    margin:0 !important;padding:11px 14px !important;
+    font-size:14px !important;line-height:1.35 !important;font-weight:500;
+    text-align:left !important;color:#0d3b66 !important;
+    background:#fff;border-radius:12px;
+    box-shadow:0 4px 14px rgba(10,35,80,.08);
+    border-left:3px solid #e63946;
+  }
+  /* step number */
+  .process .step p::before{
+    counter-increment:ps;content:"Step 0" counter(ps);
+    display:block;margin-bottom:2px;
+    font-size:10.5px;font-weight:700;letter-spacing:.4px;color:#e63946;
+  }
+}
+</style>
+
 
  <section class="process">
     <div class="container">
@@ -5836,314 +6494,13 @@ i[class*="fa-"], span[class*="fa-"] {
 </style>
 
 
-<section class="testi-sec">
 
-    <h3 class="testi-heading">
-        Trusted by Candidates for Connecting Them With the Right International Opportunities
-    </h3>
 
 
-    <div class="testi-slider">
 
-        <div class="testi-track">
+<?php include __DIR__ . '/includes/offices-section.php'; ?>
 
-
-            <?php if (!empty($reviews)): ?>
-
-
-                <?php foreach ($reviews as $review): ?>
-
-                    <article class="testi-card">
-
-
-                        
-                        <div class="testi-top">
-
-
-                            <?php if (!empty($review['avatar'])): ?>
-
-                                <img
-                                    src="<?= ayk_review_escape($review['avatar']) ?>"
-                                    class="user-img"
-                                    alt="<?= ayk_review_escape($review['reviewer_name']) ?> review"
-                                    loading="lazy"
-                                    decoding="async"
-                                    width="46"
-                                    height="46"
-                                >
-
-                            <?php else: ?>
-
-                                <div class="user-img review-avatar-fallback">
-
-                                    <?= ayk_review_escape(
-                                        strtoupper(
-                                            substr(
-                                                trim($review['reviewer_name']),
-                                                0,
-                                                1
-                                            )
-                                        )
-                                    ) ?>
-
-                                </div>
-
-                            <?php endif; ?>
-
-
-                            <div class="reviewer-info">
-
-                                <p class="reviewer-name">
-                                    <?= ayk_review_escape(
-                                        $review['reviewer_name']
-                                    ) ?>
-                                </p>
-
-
-                                <small class="review-age">
-                                    <?= ayk_review_escape(
-                                        $review['review_age']
-                                    ) ?>
-                                </small>
-
-                            </div>
-
-
-                            <?php if (
-                                strtolower(
-                                    trim(
-                                        (string)$review['source']
-                                    )
-                                ) === 'google'
-                            ): ?>
-
-                                <img
-                                    src="img/google.webp"
-                                    class="google-icon"
-                                    alt="Google review"
-                                    loading="lazy"
-                                    decoding="async"
-                                    width="21"
-                                    height="21"
-                                >
-
-                            <?php endif; ?>
-
-
-                        </div>
-
-
-                        
-                        <div
-                            class="stars"
-                            aria-label="<?= (int)$review['rating'] ?> out of 5 stars"
-                        >
-
-                            <?= str_repeat(
-                                '★',
-                                max(
-                                    1,
-                                    min(
-                                        5,
-                                        (int)$review['rating']
-                                    )
-                                )
-                            ) ?>
-
-                        </div>
-
-
-                        
-                        <div class="review-text">
-
-                            <?= nl2br(
-                                ayk_review_escape(
-                                    $review['review_text']
-                                )
-                            ) ?>
-
-                        </div>
-
-
-                    </article>
-
-                <?php endforeach; ?>
-
-
-            <?php else: ?>
-
-
-                <div class="testi-empty">
-                    No reviews available at the moment.
-                </div>
-
-
-            <?php endif; ?>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-<?php
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/blog/includes/db.php';
-
-$recentBlogs = [];
-
-// Fetch posts created 3 days ago and older (excluding today and the last 2 days)
-$stmt = $conn->prepare("
-    SELECT
-        id,
-        title,
-        slug,
-        image,
-        created_at
-    FROM blogs
-    WHERE created_at <= DATE_SUB(CURDATE(), INTERVAL 3 DAY)
-    ORDER BY created_at DESC
-    LIMIT 3
-");
-
-if ($stmt) {
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    while ($row = $result->fetch_assoc()) {
-        $recentBlogs[] = $row;
-    }
-
-    $stmt->close();
-}
-
-?>
-
-
-
-<section class="news-sec">
-
-    <div class="news-container">
-
-        <h3 class="mb-4" style="font-size: 32px; font-weight: 600;">
-            Recent News &amp; Updates
-        </h3>
-
-        <?php if (!empty($recentBlogs)): ?>
-
-            <div class="news-grid">
-
-                <?php foreach ($recentBlogs as $blog): ?>
-
-                    <?php
-                    $blogTitle = $blog['title'] ?? '';
-                    $blogSlug  = $blog['slug'] ?? '';
-                    $blogImage = $blog['image'] ?? '';
-
-                    /*
-                     * If your database stores:
-                     * blogs/image.webp
-                     * then this will use it directly.
-                     *
-                     * If it stores only:
-                     * image.webp
-                     * then it will use /img/blogs/
-                     */
-                    if ($blogImage !== '') {
-
-                        if (
-                            str_starts_with($blogImage, '/') ||
-                            str_starts_with($blogImage, 'http://') ||
-                            str_starts_with($blogImage, 'https://')
-                        ) {
-                            $imageUrl = $blogImage;
-                        } else {
-                            $imageUrl = '/blog/uploads/' . ltrim($blogImage, '/');
-                        }
-
-                    } else {
-                        $imageUrl = '/img/blogs/default.webp';
-                    }
-
-                    /*
-                     * Blog URL
-                     * Change this if your actual blog URL structure
-                     * is different.
-                     */
-                    $blogUrl = '/blog/' . rawurlencode($blogSlug);
-
-                    /*
-                     * Format database timestamp
-                     * Example: April 15, 2026
-                     */
-                    $blogDate = !empty($blog['created_at'])
-                        ? date('F j, Y', strtotime($blog['created_at']))
-                        : '';
-                    ?>
-
-                    <article class="news-card">
-
-                        <a
-                            href="<?= htmlspecialchars($blogUrl, ENT_QUOTES, 'UTF-8') ?>"
-                            aria-label="<?= htmlspecialchars($blogTitle, ENT_QUOTES, 'UTF-8') ?>"
-                        >
-
-                            <img
-                                src="<?= htmlspecialchars($imageUrl, ENT_QUOTES, 'UTF-8') ?>"
-                                alt="<?= htmlspecialchars($blogTitle, ENT_QUOTES, 'UTF-8') ?>"
-                                loading="lazy"
-                                decoding="async"
-                                fetchpriority="low"
-                            >
-
-                        </a>
-
-                        <div class="news-content">
-
-                            <a
-                                href="<?= htmlspecialchars($blogUrl, ENT_QUOTES, 'UTF-8') ?>"
-                            >
-                                <h3>
-                                    <?= htmlspecialchars($blogTitle, ENT_QUOTES, 'UTF-8') ?>
-                                </h3>
-                            </a>
-
-                            <?php if ($blogDate): ?>
-
-                                <span>
-                                    <?= htmlspecialchars($blogDate, ENT_QUOTES, 'UTF-8') ?>
-                                </span>
-
-                            <?php endif; ?>
-
-                        </div>
-
-                    </article>
-
-                <?php endforeach; ?>
-
-            </div>
-
-        <?php else: ?>
-
-            <div class="news-empty p-4" >
-                <p>No recent news available.</p>
-            </div>
-
-        <?php endif; ?>
-
-    </div>
-
-</section>      
-
-
-
-
-
-
-
-<section class="ayk-contact-offices">
+<!-- <section class="ayk-contact-offices">
     <div class="container">
 
         <div class="ayk-contact-offices-heading text-center">
@@ -6156,10 +6513,10 @@ if ($stmt) {
             </p>
         </div>
 
-        <div class="row g-4 justify-content-center">
+        <div class="row g-4 justify-content-center"> -->
 
             <!-- Islamabad Office Card -->
-            <div class="col-12 col-md-6 col-xl-4">
+            <!-- <div class="col-12 col-md-6 col-xl-4">
                 <div class="ayk-office-card-v2">
 
                     <div class="ayk-office-image-v2">
@@ -6179,7 +6536,7 @@ if ($stmt) {
                             Islamabad Office
                         </div>
 
-                        <h3>Islamabad</h3>
+                        <h3>Islamabad</h3> -->
 
                         <!--<div class="ayk-office-contact-v2">-->
 
@@ -6214,7 +6571,7 @@ if ($stmt) {
                         
                         
                         
-                         <div class="ayk-office-contact-v2">
+                         <!-- <div class="ayk-office-contact-v2">
 
                             <a href="tel:02134392918"
                                class="ayk-office-contact-item-v2"
@@ -6305,11 +6662,11 @@ if ($stmt) {
 
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
             <!-- Karachi Office Card -->
-            <div class="col-12 col-md-6 col-xl-4">
+            <!-- <div class="col-12 col-md-6 col-xl-4">
 
                 <div class="ayk-office-card-v2">
 
@@ -6332,7 +6689,7 @@ if ($stmt) {
                             Karachi Office
                         </div>
 
-                        <h3>Karachi</h3>
+                        <h3>Karachi</h3> -->
 
                         <!--<div class="ayk-office-contact-v2">-->
 
@@ -6364,7 +6721,7 @@ if ($stmt) {
                         
                         
                         
-                        
+<!--                         
                          <div class="ayk-office-contact-v2">
 
                             <a href="tel:02134392918"
@@ -6436,14 +6793,14 @@ if ($stmt) {
 
                         <div class="ayk-office-address-v2">
 
-                            <i class="fas fa-location-dot"></i>
+                            <i class="fas fa-location-dot"></i> -->
 
                             <!--<p style="color: #000000;">-->
                             <!--    Office No 402, 4th Floor, Merium Heights,-->
                             <!--    Near Baloch Pull, Shahra-e-Faisal, Karachi.-->
                             <!--</p>-->
                             
-                            <p style="color: #000000;">
+                            <!-- <p style="color: #000000;">
                                 Office No. 402, 4th Floor, Merium Heights, Baloch Colony, 
 Near Maqbool Masjid, Kathiawar Society Block A, Bangalore Town, 
 Shahra-e-Faisal, Karachi 75160, Pakistan
@@ -6468,7 +6825,7 @@ Shahra-e-Faisal, Karachi 75160, Pakistan
         </div>
     </div>
 </section>
-
+ -->
 
 
 
@@ -6527,8 +6884,202 @@ Shahra-e-Faisal, Karachi 75160, Pakistan
 
 
 
+<!-- ===================== AYK FAQ SECTION (fully scoped: .aykfq) =====================
+     Replace the old <section class="faq-sec"> ... </section> with this whole block.
+     Background image: img/faq-bg.webp (if missing, CSS gradient fallback shows).
+     Answers are identical to the FAQPage JSON-LD in <head>, so schema stays valid.
+=================================================================================== -->
+<?php
 
-<section class="faq-sec">
+$aykfq_items = [
+ ['hiring','users','How Can Employers Hire Manpower from Pakistan?','You can share your manpower requirements with us via our website, email, or WhatsApp. Once received, we begin sourcing and provide shortlisted candidates for your review.'],
+ ['hiring','layers','Do You Provide Bulk Manpower Recruitment for Large Projects?','Yes, we specialize in bulk hiring and can efficiently supply manpower for small to large-scale projects across various industries.'],
+ ['hiring','build','Which Industries Does Your Manpower Recruitment Agency Serve?','We provide manpower recruitment services from Pakistan for construction workers, oil and gas, medical staff, facility management, IT, manufacturing, logistics and engineering sectors.'],
+ ['process','check','Are Pakistani Workers Pre-Screened, Verified & Trade-Tested?',"Yes, candidates are screened according to the employer's requirements, with trade testing arranged where required."],
+ ['process','globe','What Is Your Overseas Recruitment Process?','Our process includes requirement analysis, candidate sourcing, screening, shortlisting, interviews, documentation, visa processing, and deployment.'],
+ ['process','clock','How Long Does It Take to Deploy Workers?','Timelines depend on the destination country, job category, documentation and visa approvals. We share a project-specific timeline after receiving your requirement.'],
+ ['trust','badge','Are You a Licensed Recruitment Agency?','Yes, we are a government licensed overseas recruitment agency in Pakistan and fully compliant with international recruitment standards.'],
+ ['process','doc','Do You Handle Visa and Documentation?','Yes, we provide complete support including visa processing, documentation, medical tests, attestation, and travel coordination.'],
+ ['trust','hand','Can You Become Our Official Recruitment Vendor?','Yes, we are open for vendor registration and long-term partnerships. We can follow your onboarding and compliance process.'],
+ ['trust','swap','What if a Worker Does Not Perform Well?','We offer a replacement guarantee as per agreement to ensure your satisfaction and smooth project execution.'],
+ ['trust','coin','What Are the Costs Involved in Hiring?','Costs depend on job category, volume, and employer requirements. We provide transparent pricing after understanding your needs.'],
+ ['hiring','rocket','How Do We Get Started?','Simply contact us or submit your manpower request. Our team will guide you and start the recruitment process immediately.']
+];
+?>
+<style>
+.aykfq{--nv:#0a2350;--bl:#0b63ce;--gd:#FDBB30;--rd:#e02454;--ink:#1b2433;--mu:#5b6788;--sd:rgba(37,74,160,.16);--sl:rgba(255,255,255,.95);
+  position:relative;overflow:hidden;padding:80px 20px 90px;font-family:'Poppins',Arial,sans-serif;color:var(--ink);box-sizing:border-box;
+  
+  /* NAYA BACKGROUND: Image + White Overlay */
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(240, 246, 255, 0.88) 100%),
+    url('img/faq-city-bg.jpg') center center / cover no-repeat fixed;
+}
+.aykfq *,.aykfq *::before,.aykfq *::after{box-sizing:border-box}
+.aykfq .aykfq-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+.aykfq .aykfq-o1{width:280px;height:280px;left:28%;top:5%;background:radial-gradient(circle at 30% 30%,#7fb0ff,#1f5bff 70%);opacity:.45;filter:blur(8px)}
+.aykfq .aykfq-o2{width:210px;height:210px;right:6%;top:46%;background:radial-gradient(circle at 30% 30%,#ffb3ba,#e02454 75%);opacity:.32;filter:blur(8px)}
+.aykfq .aykfq-o3{width:250px;height:250px;left:-60px;top:58%;background:radial-gradient(circle at 30% 30%,#a8e4ff,#2b8cff 75%);opacity:.42;filter:blur(8px)}
+.aykfq .aykfq-wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:340px minmax(0,1fr);gap:40px;align-items:start}
+
+.aykfq .aykfq-side{position:sticky;top:24px}
+.aykfq .aykfq-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600;color:var(--bl);
+  background:rgba(255,255,255,.55);border:1px solid var(--sl);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:4px 4px 10px var(--sd),-4px -4px 10px var(--sl)}
+.aykfq .aykfq-badge i{width:8px;height:8px;border-radius:50%;background:var(--rd);display:block}
+.aykfq h3.aykfq-title{margin:18px 0 12px;padding:0;font-family:inherit;font-size:clamp(30px,4vw,42px);line-height:1.12;font-weight:600;letter-spacing:-.02em;color:var(--nv);text-align:left}
+.aykfq p.aykfq-lead{margin:0 0 26px;font-size:16px!important; font-weight: 600; line-height:1.6;color: var(--nv) !important}
+
+.aykfq .aykfq-help{
+  padding:22px;
+  border-radius:24px;
+  background: #ffffff; 
+  border:1px solid rgba(11, 99, 206, 0.1);
+  box-shadow: 0 15px 40px rgba(10, 35, 80, 0.08); /* Clean shadow */
+}
+.aykfq .aykfq-help b{display:block;margin:0 0 6px;font-size:18px;color:var(--nv)}
+.aykfq .aykfq-help p{margin:0 0 16px;font-size:14px!important;line-height:1.55;color:var(--mu)!important}
+.aykfq a.aykfq-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 16px;border-radius:14px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;line-height:1.2}
+.aykfq a.aykfq-primary{color:#fff;background:linear-gradient(180deg,#f0394a,var(--rd));box-shadow:0 10px 22px rgba(224,36,84,.32),inset 0 1px 0 rgba(255,255,255,.4)}
+.aykfq a.aykfq-ghost{margin-top:10px;color:var(--nv);background:linear-gradient(145deg,#fff,#e6eefc);box-shadow:5px 5px 12px var(--sd),-5px -5px 12px var(--sl)}
+.aykfq a.aykfq-btn:hover{transform:translateY(-2px);text-decoration:none}
+.aykfq .aykfq-stats{display:flex;gap:10px;margin-top:18px}
+.aykfq .aykfq-stat{flex:1;text-align:center;padding:12px 6px;border-radius:16px;background:rgba(233,240,252,.7);box-shadow:inset 4px 4px 9px var(--sd),inset -4px -4px 9px #fff}
+.aykfq .aykfq-stat b{display:block;font-size:20px;color:var(--nv)}
+.aykfq .aykfq-stat span{font-size:11.5px;color:var(--mu)}
+
+
+
+.aykfq .aykfq-list{display:grid;gap:14px}
+
+/* ==================== ITEM ==================== */
+.aykfq .aykfq-item{
+  border-radius:22px;
+  background: #ffffff; /* Solid white taake image andar se na dikhe */
+  box-shadow: 0 10px 30px rgba(10, 35, 80, 0.08); /* Clean shadow */
+  border: 1px solid rgba(11, 99, 206, 0.1);
+  transition: box-shadow .3s ease, border-color .3s ease;
+}
+.aykfq .aykfq-item.aykfq-open{
+  background: #ffffff; /* Open state mein bhi solid white */
+  box-shadow: 0 15px 35px rgba(11, 99, 206, 0.12); /* Thori gehri shadow open par */
+  border-color: rgba(11, 99, 206, 0.2);
+}
+
+.aykfq .aykfq-item[hidden]{display:none}
+.aykfq button.aykfq-q{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:16px;width:100%;padding:20px 24px;cursor:pointer;border-radius:22px;font-family:'Poppins',Arial,sans-serif}
+
+
+
+.aykfq .aykfq-qt{flex:1;font-weight:600;font-size:16.5px;line-height:1.35;color:var(--nv)}
+.aykfq .aykfq-tog{flex:none;width:36px;height:36px;border-radius:50%;position:relative;background:#e9f0fc;box-shadow:inset 3px 3px 7px var(--sd),inset -3px -3px 7px #fff;transition:background .3s,box-shadow .3s}
+.aykfq .aykfq-tog::before,.aykfq .aykfq-tog::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2.5px;border-radius:2px;background:var(--bl);transform:translate(-50%,-50%);transition:transform .3s,background .3s}
+.aykfq .aykfq-tog::after{transform:translate(-50%,-50%) rotate(90deg)}
+.aykfq .aykfq-open .aykfq-tog{background:linear-gradient(145deg,#3b8cff,var(--bl));box-shadow:0 6px 14px rgba(11,99,206,.4)}
+.aykfq .aykfq-open .aykfq-tog::before,.aykfq .aykfq-open .aykfq-tog::after{background:#fff}
+.aykfq .aykfq-open .aykfq-tog::after{transform:translate(-50%,-50%) rotate(0)}
+
+/* ==================== ACCORDION BODY (FIXED) ==================== */
+.aykfq .aykfq-a{
+  display:grid;
+  grid-template-rows:0fr;
+   transition:grid-template-rows .25s cubic-bezier(0.2, 0, 0, 1);
+  overflow:hidden;                 /* ⭐ clip during collapse */
+}
+.aykfq .aykfq-a > div{
+  min-height:0;                    /* ⭐⭐ THE KEY — allows 0fr to collapse */
+  overflow:hidden;
+}
+.aykfq .aykfq-open .aykfq-a{
+  grid-template-rows:1fr;
+}
+
+
+
+.aykfq .aykfq-ans{margin:0 22px 22px 24px;padding:18px 20px;border-radius:16px;background:rgba(228,238,253,.55);box-shadow:inset 4px 4px 10px var(--sd),inset -4px -4px 10px #fff;color:var(--mu);font-size:15px;line-height:1.7}
+.aykfq a.aykfq-btn:focus-visible,.aykfq button.aykfq-q:focus-visible,.aykfq button.aykfq-chip:focus-visible{outline:3px solid rgba(11,99,206,.5);outline-offset:3px}
+@media (max-width:900px){.aykfq .aykfq-wrap{grid-template-columns:minmax(0,1fr);gap:32px}.aykfq .aykfq-side{position:static}}
+@media (max-width:520px){.aykfq{padding:48px 14px 56px}.aykfq button.aykfq-q{padding:16px;gap:12px}.aykfq .aykfq-ico{width:38px;height:38px;border-radius:12px}.aykfq .aykfq-qt{font-size:15px}.aykfq .aykfq-ans{margin:0 14px 16px}}
+@media (prefers-reduced-motion:reduce){.aykfq *{transition:none!important}}
+</style>
+
+<section class="aykfq" id="faqs" aria-labelledby="aykfq-heading">
+
+ 
+
+  <div class="aykfq-wrap">
+    <aside class="aykfq-side">
+      <span class="aykfq-badge"><i></i>Got questions?</span>
+      <h3 class="aykfq-title" id="aykfq-heading">Employer FAQs</h3>
+      <p class="aykfq-lead">Everything you need to know about hiring manpower from Pakistan.</p>
+      <div class="aykfq-help">
+        <b>Still have a question?</b>
+        <p>Our recruitment team replies within one business day.</p>
+        <a class="aykfq-btn aykfq-primary" href="#request-manpower">Submit Requirement</a>
+        <a class="aykfq-btn aykfq-ghost" href="https://wa.me/923301922919?text=Hello%20AYK%20Team%2C%20our%20company%20needs%20manpower." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <div class="aykfq-stats">
+          <div class="aykfq-stat"><b>25+</b><span>Countries</span></div>
+          <div class="aykfq-stat"><b>50k+</b><span>Deployed</span></div>
+          <div class="aykfq-stat"><b>24/7</b><span>Support</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <div>
+
+
+    
+
+      <div class="aykfq-list" id="aykfqList">
+        <?php foreach ($aykfq_items as $i => $f): $open = ($i === 0); ?>
+        <div class="aykfq-item<?= $open ? ' aykfq-open' : '' ?>" data-c="<?= $f[0] ?>">
+          <button type="button" class="aykfq-q" aria-expanded="<?= $open ? 'true' : 'false' ?>" aria-controls="aykfq-a<?= $i ?>">
+
+
+            
+        <span class="aykfq-qt"><?= htmlspecialchars($f[2], ENT_QUOTES, 'UTF-8') ?></span>
+            <span class="aykfq-tog" aria-hidden="true"></span>
+          </button>
+
+
+          <div class="aykfq-a" id="aykfq-a<?= $i ?>" role="region">
+            <div><div class="aykfq-ans"><?= htmlspecialchars($f[3], ENT_QUOTES, 'UTF-8') ?></div></div>
+          </div>
+        </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var root = document.querySelector('.aykfq'); if(!root) return;
+  var list = root.querySelector('#aykfqList');
+
+  /* Toggle accordion */
+  list.addEventListener('click', function(e){
+    var b = e.target.closest('.aykfq-q'); if(!b) return;
+    var it = b.closest('.aykfq-item');
+    var wasOpen = it.classList.contains('aykfq-open');
+
+    // Close all
+    list.querySelectorAll('.aykfq-item.aykfq-open').forEach(function(o){
+      o.classList.remove('aykfq-open');
+      o.querySelector('.aykfq-q').setAttribute('aria-expanded','false');
+    });
+
+    // Open clicked (if it wasn't open)
+    if(!wasOpen){
+      it.classList.add('aykfq-open');
+      b.setAttribute('aria-expanded','true');
+    }
+  });
+
+  
+})();
+</script>
+<!-- ===================== /AYK FAQ SECTION ===================== -->
+<!-- <section class="faq-sec">
 
     <div class="faq-container">
 
@@ -6622,7 +7173,7 @@ Shahra-e-Faisal, Karachi 75160, Pakistan
 
     </div>
 
-</section>
+</section> -->
 
 </main>
 
